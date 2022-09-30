@@ -9,12 +9,26 @@ import { ICharacter } from '../shared/interfaces';
 export class UserComponent implements OnInit {
   url: string = 'https://hp-api.herokuapp.com/api/characters';
   characters!: ICharacter[];
+  filteredCharacters: ICharacter[] = [];
 
   constructor(private dataService: DataService) {}
+
+  filter(filterText: string): void {
+    if (filterText) {
+      this.filteredCharacters = this.characters.filter(
+        ({ name }) => name.toLowerCase().indexOf(filterText.toLowerCase()) > -1
+      );
+    } else {
+      this.filteredCharacters = this.characters;
+    }
+  }
 
   ngOnInit(): void {
     this.dataService
       .getCharacters(this.url)
-      .subscribe((response: ICharacter[]) => (this.characters = response));
+      .subscribe(
+        (response: ICharacter[]) =>
+          (this.characters = this.filteredCharacters = response)
+      );
   }
 }

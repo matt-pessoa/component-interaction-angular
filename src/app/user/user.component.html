@@ -1,2 +1,2 @@
-<app-filter-text></app-filter-text>
-<app-user-list [characters]="characters"></app-user-list>
+<app-filter-text (filterEventEmitter)="filter($event)"></app-filter-text>
+<app-user-list [characters]="filteredCharacters"></app-user-list>
