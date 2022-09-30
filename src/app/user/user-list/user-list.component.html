@@ -1,1 +1,4 @@
-<p>user-list works!</p>
+<div class="hp-characters" *ngFor="let character of listOfCharacters">
+  <img src="{{ character.image }}" />
+  <h1>{{ character.name }}</h1>
+</div>
