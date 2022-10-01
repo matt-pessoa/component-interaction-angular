@@ -1,4 +1,4 @@
 <div class="hp-characters" *ngFor="let character of listOfCharacters">
   <img src="{{ character.image }}" />
-  <h1>{{ character.name }}</h1>
+  <a [routerLink]="['/character', character.name]">{{ character.name }}</a>
 </div>

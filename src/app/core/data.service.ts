@@ -20,4 +20,20 @@ export class DataService {
       })
     );
   }
+
+  getCharacterByName(
+    url: string,
+    charName: string
+  ): Observable<ICharacter | null> {
+    return this.http.get<ICharacter[]>(url).pipe(
+      map((characters: ICharacter[]) => {
+        let character = characters.find(({ name }) => name === charName);
+        if (character) {
+          return character;
+        } else {
+          return null;
+        }
+      })
+    );
+  }
 }
